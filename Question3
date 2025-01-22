@@ -1,0 +1,62 @@
+# Base class
+class Vehicle:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+    def display_info(self):
+        # Basic vehicle info
+        print(f"Vehicle Info: {self.year} {self.make} {self.model}")
+
+# Derived class for Car
+class Car(Vehicle):
+    def __init__(self, make, model, year, seating_capacity):
+        super().__init__(make, model, year)
+        self.seating_capacity = seating_capacity
+
+    def display_info(self):
+        # Display car specific info along with vehicle info
+        super().display_info()
+        print(f"Seating Capacity: {self.seating_capacity}")
+
+# Derived class for Bike
+class Bike(Vehicle):
+    def __init__(self, make, model, year, type_of_bike):
+        super().__init__(make, model, year)
+        self.type_of_bike = type_of_bike
+
+    def display_info(self):
+        # Display bike specific info along with vehicle info
+        super().display_info()
+        print(f"Type of Bike: {self.type_of_bike}")
+
+# Derived class for Truck
+class Truck(Vehicle):
+    def __init__(self, make, model, year, payload_capacity):
+        super().__init__(make, model, year)
+        self.payload_capacity = payload_capacity
+
+    def display_info(self):
+        # Display truck specific info along with vehicle info
+        super().display_info()
+        print(f"Payload Capacity: {self.payload_capacity}")
+
+# Creating instances of each class
+vehicle = Vehicle("Generic", "Models", 2020)
+car = Car("Tesla", "Model Y", 2020, 5)
+bike = Bike("Suzuki", "GSX-R1000", 2022, "Sport")
+truck = Truck("Ford", "F-150", 2023, 1000)
+
+# Displaying information of each vehicle
+print("Vehicle Information:")
+vehicle.display_info()
+
+print("\nCar Information:")
+car.display_info()
+
+print("\nBike Information:")
+bike.display_info()
+
+print("\nTruck Information:")
+truck.display_info()
