@@ -1,0 +1,53 @@
+class SecureVault:
+    def __init__(self):
+        # Private attribute for storing passwords
+        self.__passwords = []
+
+    def add_password(self, password):
+        if isinstance(password, str) and password.strip():
+            self.__passwords.append(password)
+            print("Password added successfully.")
+        else:
+            print("Invalid password. The password must be a non-empty string.")
+
+    def validate_password(self, password):
+        """
+        Checks if the given password exists in the vault.
+        """
+        return password in self.__passwords
+
+    def __str__(self):
+        """
+        Overrides the __str__ method to protect private data.
+        """
+        return "SecureVault: password vault (access restricted)."
+
+# Main program
+def main():
+    vault = SecureVault()
+
+    while True:
+        print("\n--- Menu ---")
+        print("1. Add new password")
+        print("2. Check password existence")
+        print("3. Exit")
+
+        choice = input("Choose an option (1/2/3): ")
+
+        if choice == "1":
+            password = input("Enter a new password: ")
+            vault.add_password(password)
+        elif choice == "2":
+            password = input("Enter a password to check: ")
+            if vault.validate_password(password):
+                print("Password found in the vault.")
+            else:
+                print("Password not found.")
+        elif choice == "3":
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
