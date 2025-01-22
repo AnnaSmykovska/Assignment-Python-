@@ -1,0 +1,46 @@
+from abc import ABC, abstractmethod
+
+# Abstract class Employee
+class Employee(ABC):
+    @abstractmethod
+    def calculate_salary(self):
+        pass
+
+# Subclass FullTimeEmployee
+class FullTimeEmployee(Employee):
+    def __init__(self, name, monthly_salary):
+        self.name = name
+        self.monthly_salary = monthly_salary
+
+    def calculate_salary(self):
+        return self.monthly_salary
+
+# Subclass PartTimeEmployee
+class PartTimeEmployee(Employee):
+    def __init__(self, name, hourly_rate, hours_worked):
+        self.name = name
+        self.hourly_rate = hourly_rate
+        self.hours_worked = hours_worked
+
+    def calculate_salary(self):
+        return self.hourly_rate * self.hours_worked
+
+# Subclass Freelancer
+class Freelancer(Employee):
+    def __init__(self, name, project_fee):
+        self.name = name
+        self.project_fee = project_fee
+
+    def calculate_salary(self):
+        return self.project_fee
+
+# List of employees
+employees = [
+    FullTimeEmployee("Anna", 5000),
+    PartTimeEmployee("Mark", 40, 80),
+    Freelancer("Mathew", 4000)
+]
+
+# Calculate and print salaries using polymorphism
+for employee in employees:
+    print(f"{employee.name}'s salary: ${employee.calculate_salary()}")
