@@ -1,0 +1,50 @@
+class Student:
+    def __init__(self, name, roll_number, marks):
+        self.name = name
+        self.roll_number = roll_number
+        self.marks = marks
+
+    def calculate_average(self):
+        """
+        Calculate the average marks of the student.
+        """
+        total_marks = sum(self.marks.values())
+        num_subjects = len(self.marks)
+        return total_marks / num_subjects if num_subjects > 0 else 0
+
+    def display_details(self):
+        """
+        Display the details of the student.
+        """
+        print(f"Name: {self.name}")
+        print(f"Roll Number: {self.roll_number}")
+        print("Marks:")
+        for subject, mark in self.marks.items():
+            print(f"  {subject}: {mark}")
+        print(f"Average Marks: {self.calculate_average():.2f}")
+
+    def update_marks(self, subject, new_mark):
+        """
+        Update the marks dynamically for a specific subject.
+        """
+        if subject in self.marks:
+            self.marks[subject] = new_mark
+            print(f"Marks for {subject} updated to {new_mark}.")
+        else:
+            print(f"Subject {subject} not found in the record.")
+
+# Creating a Student object
+student1 = Student(name="Anna", roll_number=205, marks={"Math": 70, "English": 90, "Art": 80})
+
+print("Initial Details:")
+student1.display_details()
+
+# Dynamically update marks for a specific subject
+print("\nUpdating Marks:")
+subject_to_update = "Math"
+new_marks = 95
+student1.update_marks(subject_to_update, new_marks)
+
+# Display updated details
+print("\nUpdated Details:")
+student1.display_details()
