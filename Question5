@@ -1,0 +1,112 @@
+from abc import ABC, abstractmethod
+
+# Abstract class Appliance
+class Appliance(ABC):
+    
+    @abstractmethod
+    def turn_on(self):
+        pass
+    
+    @abstractmethod
+    def turn_off(self):
+        pass
+    
+    @abstractmethod
+    def get_status(self):
+        pass
+
+# Concrete class WashingMachine
+class WashingMachine(Appliance):
+    def __init__(self):
+        self.status = "OFF"
+    
+    def turn_on(self):
+        self.status = "ON"
+        print("Washing Machine is now ON.")
+    
+    def turn_off(self):
+        self.status = "OFF"
+        print("Washing Machine is now OFF.")
+    
+    def get_status(self):
+        return self.status
+
+# Concrete class Refrigerator
+class Refrigerator(Appliance):
+    def __init__(self):
+        self.status = "OFF"
+    
+    def turn_on(self):
+        self.status = "ON"
+        print("Refrigerator is now ON.")
+    
+    def turn_off(self):
+        self.status = "OFF"
+        print("Refrigerator is now OFF.")
+    
+    def get_status(self):
+        return self.status
+
+# Concrete class AirConditioner
+class AirConditioner(Appliance):
+    def __init__(self):
+        self.status = "OFF"
+    
+    def turn_on(self):
+        self.status = "ON"
+        print("Air Conditioner is now ON.")
+    
+    def turn_off(self):
+        self.status = "OFF"
+        print("Air Conditioner is now OFF.")
+    
+    def get_status(self):
+        return self.status
+
+# Function for demonstrating interaction with devices
+def control_appliance(appliance):
+    while True:
+        action = input(f"Do you want to turn on or off the {appliance.__class__.__name__}? (on/off/exit): ").strip().lower()
+        
+        if action == "on":
+            appliance.turn_on()
+        elif action == "off":
+            appliance.turn_off()
+        elif action == "exit":
+            print(f"Exiting control for {appliance.__class__.__name__}.")
+            break
+        else:
+            print("Invalid input. Please type 'on', 'off', or 'exit'.")
+
+# Function to display the status of all devices
+def display_appliance_status(appliances):
+    print("\nCurrent appliance statuses:")
+    for appliance in appliances:
+        print(f"{appliance.__class__.__name__}: {appliance.get_status()}")
+
+# Main program
+def main():
+    appliances = [WashingMachine(), Refrigerator(), AirConditioner()]
+
+    print("Choose an appliance to control:")
+    for i, appliance in enumerate(appliances, 1):
+        print(f"{i}. {appliance.__class__.__name__}")
+
+    while True:
+        try:
+            choice = int(input("Enter the number of the appliance you want to control (1-3), 4 to display status, or 0 to exit: "))
+            
+            if choice == 0:
+                print("Exiting the program.")
+                break
+            elif choice == 4:
+                display_appliance_status(appliances)
+            elif 1 <= choice <= 3:
+                control_appliance(appliances[choice - 1])
+            else:
+                print("Invalid choice. Please choose a number between 1 and 3.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+        
+if __name__ == "__main__":
+    main()
